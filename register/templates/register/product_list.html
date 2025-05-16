@@ -1,0 +1,29 @@
+{% extends 'register/base.html' %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+<h1>Product List</h1>
+<form method="get" class="search-bar">
+    <input type="text" name="q" placeholder="Search..." value="{{ request.GET.q }}">
+    <button type="submit" class="btn">Search</button>
+    <a href="{% url 'add_register' %}" class="btn">Add New</a>
+</form>
+<table>
+    <tr>
+        <th>ID</th><th>Name</th><th>Price</th><th>Qty</th><th>Date</th><th>Desc</th><th>Actions</th>
+    </tr>
+    {% for item in register %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.product }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.manufacture_date }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+            <a href="{% url 'edit_register' item.pk %}">Edit</a>
+            <a href="{% url 'delete_register' item.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

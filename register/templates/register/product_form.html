@@ -1,0 +1,11 @@
+{% extends 'register/base.html' %}
+{% block title %}{{ form.instance.pk|yesno:"Edit Record, Add Record" }}{% endblock %}
+{% block content %}
+<h1>{{ form.instance.pk|yesno:"Edit Product,Add Product" }}</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn">Save</button>
+  <a href="{% url 'list' %}" class="btn">Back</a>
+</form>
+{% endblock %}
